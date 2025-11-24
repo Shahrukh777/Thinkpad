@@ -13,11 +13,9 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 // CORS ERROR
-app.use(cors({
-  origin: "http://localhost:5173"
-}))
+app.use(cors());
 
-// Middleware simple logger [ Can check for authentication here too
+// Middleware simple logger [ Can check for authentication here too ]
 
 // Rate limiting: It can control the rate of requests a client can make to the server.
 

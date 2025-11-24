@@ -1,8 +1,39 @@
+import axios from "axios";
 import { PenSquareIcon, Trash2Icon } from "lucide-react";
 import React from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router";
+import { url } from "../pages/HomePage";
 
-const NoteCard = ({ note }) => {
+const NoteCard = ({ note, setNotes }) => {
+  const handleDetele = async (e, id) => {
+    e.preventDefault();
+
+    if (
+      !window.confirm(
+        "Are you sure you wante to delete the node. This action cannot be undone."
+      )
+    )
+      return;
+
+    try {
+      await axios.delete(`${url}/notes/${id}`);
+      toast.success("Note deleted successfully.", {
+        position: "bottom-left",
+        duration: 3000,
+      });
+
+      setNotes((prev) => prev.filter((note) => note._id !== id));
+    } catch (error) {
+      console.log("Error: ", error);
+      toast.error("Couldn't delete the Note.", {
+        position: "bottom-left",
+        duration: 4000,
+      });
+    }
+    return;
+  };
+
   return (
     <Link
       to={`note/${note._id}`}
@@ -15,13 +46,17 @@ const NoteCard = ({ note }) => {
         </p>
         <div className="card-actions justify-between items-center mt-4">
           <span className="text-sm text-base-content/60">
-            {" "}
-            {new Date(note.createdAt).toLocaleDateString()}{" "}
+            {new Date(note.createdAt).toLocaleDateString()}
           </span>
           <div className="flex items-center items-middle gap-1 ">
-            <PenSquareIcon size={20} />
-            <button className=" btn btn-ghost btn-xs text-error ">
-                <Trash2Icon size={20} />
+            <button className=" btn btn-ghost btn-s ">
+              <PenSquareIcon size={20} />
+            </button>
+            <button
+              className=" btn btn-ghost btn-s text-error "
+              onClick={(e) => handleDetele(e, note._id)}
+            >
+              <Trash2Icon size={20} />
             </button>
           </div>
         </div>

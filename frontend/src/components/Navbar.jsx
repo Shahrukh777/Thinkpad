@@ -11,7 +11,7 @@ const Navbar = () => {
             Thinkboard
           </h1>
           <div className="flex items-center gap-4">
-            <Link to="/create" className="btn btn-primary border-none text-black hover:bg-green-700/90 bg-green-600 rounded-full">
+            <Link to="/create" className="btn btn-primary">
               Create New Note
               <PlusIcon className="size-5" />
             </Link>
