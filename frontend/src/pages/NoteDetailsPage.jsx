@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import { url } from "./HomePage";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { ArrowLeftIcon, LoaderIcon } from "lucide-react";
+import api from "../../../backend/src/config/axios";
 
 const NoteDetailsPage = () => {
   const [note, setNote] = useState(null);
@@ -18,7 +18,7 @@ const NoteDetailsPage = () => {
     const fetchNote = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`${url}/notes/${id}`);
+        const res = await axios.get(`${api}/notes/${id}`);
         setNote(res.data);
         console.log(note);
       } catch (error) {
@@ -47,7 +47,7 @@ const NoteDetailsPage = () => {
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete the note ?")) return;
     try {
-      await axios.delete(`${url}/notes/${id}`);
+      await axios.delete(`${api}/notes/${id}`);
       toast.success("Note deleted.");
       navigate("/");
     } catch (error) {
@@ -63,7 +63,7 @@ const NoteDetailsPage = () => {
     setSaving(true);
 
     try {
-      await axios.put(`${url}/notes/${id}`, note);
+      await axios.put(`${api}/notes/${id}`, note);
       toast.success("Note updated successfully.");
     } catch (error) {
       console.log("Error updating note", error);

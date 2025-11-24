@@ -3,7 +3,7 @@ import { PenSquareIcon, Trash2Icon } from "lucide-react";
 import React from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
-import { url } from "../pages/HomePage";
+import api from "../../../backend/src/config/axios";
 
 const NoteCard = ({ note, setNotes }) => {
   const handleDetele = async (e, id) => {
@@ -17,7 +17,7 @@ const NoteCard = ({ note, setNotes }) => {
       return;
 
     try {
-      await axios.delete(`${url}/notes/${id}`);
+      await axios.delete(`${api}/notes/${id}`);
       toast.success("Note deleted successfully.", {
         position: "bottom-left",
         duration: 3000,

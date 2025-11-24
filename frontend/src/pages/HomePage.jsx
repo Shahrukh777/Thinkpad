@@ -5,7 +5,8 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
 import NotesNotFound from "../components/NotesNotFound";
-export const url = "http://localhost:3000/api";
+import api from "../../../backend/src/config/axios";
+
 
 const HomePage = () => {
   const [isRateLimited, setIsRateLimited] = useState(false);
@@ -17,7 +18,7 @@ const HomePage = () => {
       setLoading(true);
 
       try {
-        const res = await axios.get(`${url}/notes`);
+        const res = await axios.get(`${api}/notes`);
         console.log(res.data);
         setNotes(res.data);
         setIsRateLimited(false);
