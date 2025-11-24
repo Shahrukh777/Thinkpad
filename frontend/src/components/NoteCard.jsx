@@ -3,7 +3,7 @@ import { PenSquareIcon, Trash2Icon } from "lucide-react";
 import React from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
-import api from "../../../backend/src/config/axios";
+import api from "../lib/axios";
 
 const NoteCard = ({ note, setNotes }) => {
   const handleDetele = async (e, id) => {

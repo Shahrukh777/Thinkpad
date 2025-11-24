@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
 import NotesNotFound from "../components/NotesNotFound";
-import api from "../../../backend/src/config/axios";
+import api from "../lib/axios";
 
 
 const HomePage = () => {

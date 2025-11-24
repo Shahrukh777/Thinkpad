@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router";
 import { ArrowLeftIcon } from "lucide-react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import api from "../../../backend/src/config/axios";
+import api from "../lib/axios";
 
 const CreatePage = () => {
   const [title, setTitle] = useState("");
