@@ -15,9 +15,13 @@ const __dirname = path.resolve();
 const app = express();
 
 // CORS ERROR
-if (process.env.NODE_ENV !== "production") {
-  app.use(cors());
-}
+app.use(
+  cors({
+    origin: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
 
 // Middleware simple logger [ Can check for authentication here too ]
 
